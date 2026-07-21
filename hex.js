@@ -742,7 +742,7 @@ function startRequest() {
 }
 
 if (cluster.isMaster) {
-    console.log('h/2 flooder by @iotb3r7');
+    console.log('Made By Ethical Hex');
     for (var i = 0; i < threads; i++) {
         cluster.fork({ core: i % os.cpus().length });
     }
