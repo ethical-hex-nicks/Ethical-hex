@@ -16,42 +16,42 @@
         { step: 3, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
         { step: 4, name: "Fake profile", xpath: "//span[contains(text(),'Fake profile')]" },
         { step: 5, name: "Me", xpath: "//span[text()='Me']" },
-        { step: 6, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
-        { step: 7, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
-        { step: 8, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
+        { step: 6, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit')]" },
+        { step: 7, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next')]" },
+        { step: 8, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done')]" },
 
         { step: 9, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
         { step: 10, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
         { step: 11, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
         { step: 12, name: "Problem involving someone under 18", xpath: "//span[contains(text(),'Problem involving someone under 18')]" },
         { step: 13, name: "Physical abuse", xpath: "//span[contains(text(),'Physical abuse')]" },
-        { step: 14, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
-        { step: 15, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
-        { step: 16, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
+        { step: 14, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit')]" },
+        { step: 15, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next')]" },
+        { step: 16, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done')]" },
 
         { step: 17, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
         { step: 18, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
         { step: 19, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
         { step: 20, name: "Violent, hateful content", xpath: "//span[contains(text(),'Violent, hateful or disturbing content')]" },
         { step: 21, name: "Credible threat to safety", xpath: "//span[contains(text(),'Credible threat to safety')]" },
-        { step: 22, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
-        { step: 23, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
-        { step: 24, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
+        { step: 22, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit')]" },
+        { step: 23, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next')]" },
+        { step: 24, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done')]" },
 
         { step: 25, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
         { step: 26, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
         { step: 27, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
         { step: 28, name: "Scam, fraud", xpath: "//span[contains(text(),'Scam, fraud or false information')]" },
         { step: 29, name: "Fraud or scam", xpath: "//span[contains(text(),'Fraud or scam')]" },
-        { step: 30, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
-        { step: 31, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
-        { step: 32, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
+        { step: 30, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit')]" },
+        { step: 31, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next')]" },
+        { step: 32, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done')]" },
 
         { step: 33, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
         { step: 34, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
         { step: 35, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
         { step: 36, name: "Something else", xpath: "//span[contains(text(),'Something else')]" },
-        { step: 37, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
+        { step: 37, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done')]" },
 
         { step: 38, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
         { step: 39, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
@@ -59,89 +59,74 @@
         { step: 41, name: "Selling or promoting restricted items", xpath: "//span[contains(text(),'Selling or promoting restricted items') or contains(text(),'Sale of regulated goods') or contains(text(),'restricted items')]" },
         { step: 42, name: "Drugs", xpath: "//span[contains(text(),'Drugs')]" },
         { step: 43, name: "Highly addictive drugs (cocaine, heroin, fentanyl)", xpath: "//span[contains(text(),'Highly addictive drugs') or contains(text(),'cocaine') or contains(text(),'heroin') or contains(text(),'fentanyl')]" },
-        { step: 44, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
-        { step: 45, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
-        { step: 46, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
+        { step: 44, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit')]" },
+        { step: 45, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next')]" },
+        { step: 46, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done')]" },
 
         { step: 47, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
         { step: 48, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
         { step: 49, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
         { step: 50, name: "Selling or promoting restricted items", xpath: "//span[contains(text(),'Selling or promoting restricted items') or contains(text(),'Sale of regulated goods') or contains(text(),'restricted items')]" },
         { step: 51, name: "Weapons", xpath: "//span[contains(text(),'Weapons')]" },
-        { step: 52, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
-        { step: 53, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
-        { step: 54, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
+        { step: 52, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit')]" },
+        { step: 53, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next')]" },
+        { step: 54, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done')]" },
 
         { step: 55, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
         { step: 56, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
         { step: 57, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
         { step: 58, name: "Selling or promoting restricted items", xpath: "//span[contains(text(),'Selling or promoting restricted items') or contains(text(),'Sale of regulated goods') or contains(text(),'restricted items')]" },
         { step: 59, name: "Alcohol", xpath: "//span[contains(text(),'Alcohol')]" },
-        { step: 60, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
-        { step: 61, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
-        { step: 62, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
+        { step: 60, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit')]" },
+        { step: 61, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next')]" },
+        { step: 62, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done')]" },
 
         { step: 63, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
         { step: 64, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
         { step: 65, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
         { step: 66, name: "Selling or promoting restricted items", xpath: "//span[contains(text(),'Selling or promoting restricted items') or contains(text(),'Sale of regulated goods') or contains(text(),'restricted items')]" },
         { step: 67, name: "Tobacco", xpath: "//span[contains(text(),'Tobacco')]" },
-        { step: 68, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
-        { step: 69, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
-        { step: 70, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
+        { step: 68, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit')]" },
+        { step: 69, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next')]" },
+        { step: 70, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done')]" },
 
         { step: 71, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
         { step: 72, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
         { step: 73, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
         { step: 74, name: "Selling or promoting restricted items", xpath: "//span[contains(text(),'Selling or promoting restricted items') or contains(text(),'Sale of regulated goods') or contains(text(),'restricted items')]" },
         { step: 75, name: "Gambling", xpath: "//span[contains(text(),'Gambling')]" },
-        { step: 76, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
-        { step: 77, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
-        { step: 78, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
+        { step: 76, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit')]" },
+        { step: 77, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next')]" },
+        { step: 78, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done')]" },
 
         { step: 79, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
         { step: 80, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
         { step: 81, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
         { step: 82, name: "Selling or promoting restricted items", xpath: "//span[contains(text(),'Selling or promoting restricted items') or contains(text(),'Sale of regulated goods') or contains(text(),'restricted items')]" },
         { step: 83, name: "Animals", xpath: "//span[contains(text(),'Animals')]" },
-        { step: 84, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
-        { step: 85, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
-        { step: 86, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
+        { step: 84, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit')]" },
+        { step: 85, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next')]" },
+        { step: 86, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done')]" },
 
         { step: 87, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
         { step: 88, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
         { step: 89, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
         { step: 90, name: "Problem involving someone under 18", xpath: "//span[contains(text(),'Problem involving someone under 18')]" },
         { step: 91, name: "Threatening to share my nude images", xpath: "//span[contains(text(),'Threatening to share my nude images')]" },
-        { step: 92, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
-        { step: 93, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
-        { step: 94, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
+        { step: 92, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit')]" },
+        { step: 93, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next')]" },
+        { step: 94, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done')]" },
 
         { step: 95, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
         { step: 96, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
         { step: 97, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
         { step: 98, name: "Problem involving someone under 18", xpath: "//span[contains(text(),'Problem involving someone under 18')]" },
-        { step: 99, name: "Sharing someone's nude images", xpath: "//span[contains(text(),'Sharing someone's nude images')]" },
-        { step: 100, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
-        { step: 101, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
-        { step: 102, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
+        { step: 99, name: "Seems like sexual exploitation", xpath: "//span[contains(text(),'Seems like sexual exploitation')]" },
+        { step: 100, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit')]" },
+        { step: 101, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next')]" },
+        { step: 102, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done')]" },
 
-        { step: 103, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
-        { step: 104, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
-        { step: 105, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
-        { step: 106, name: "Problem involving someone under 18", xpath: "//span[contains(text(),'Problem involving someone under 18')]" },
-        { step: 107, name: "Seems like sexual exploitation", xpath: "//span[contains(text(),'Seems like sexual exploitation')]" },
-        { step: 108, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
-        { step: 109, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
-        { step: 110, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
-
-        { step: 111, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
-        { step: 112, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
-        { step: 113, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
-        { step: 114, name: "Bullying or harassment or abuse", xpath: "//span[contains(text(),'Bullying or harassment or abuse')]" },
-        { step: 115, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
-        { step: 116, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
-        { step: 117, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" }
+    
     ];
 
     const TG_BOT_TOKEN = "8884720634:AAGwGYDbKmn-90Pmz2N9uh0DyMq9XxlU4YE";
@@ -602,8 +587,6 @@
         const title = document.title;
         const indicators = [
             "Content isn't available",
-            "Không tìm thấy nội dung",
-            "Trang này không khả dụng",
             "This page isn't available",
             "Page Not Found"
         ];
@@ -747,18 +730,6 @@
                                     if (el) break;
                                 }
                             }
-                            if (!el && action.name === "Sharing someone's nude images") {
-                                const altXpaths = [
-                                    "//span[contains(text(),'Sharing someone's nude images')]/ancestor::div[@role='button']",
-                                    "//span[contains(text(),'Sharing') and contains(text(),'nude')]",
-                                    "//span[contains(text(),'nude images')]",
-                                    "//span[contains(text(),'sharing') and contains(text(),'nude')]"
-                                ];
-                                for (const alt of altXpaths) {
-                                    el = await findElement(alt, 2000);
-                                    if (el) break;
-                                }
-                            }
                             if (!el && action.name === "Threatening to share my nude images") {
                                 const altXpaths = [
                                     "//span[contains(text(),'Threatening to share my nude images')]/ancestor::div[@role='button']",
@@ -796,9 +767,7 @@
                             if (!el && action.name === "Next") {
                                 const altXpaths = [
                                     "//span[text()='Next']/ancestor::div[@role='button']",
-                                    "//span[contains(text(),'Next')]",
-                                    "//span[text()='Tiếp']/ancestor::div[@role='button']",
-                                    "//span[contains(text(),'Tiếp')]"
+                                    "//span[contains(text(),'Next')]"
                                 ];
                                 for (const alt of altXpaths) {
                                     el = await findElement(alt, 2000);
@@ -808,11 +777,7 @@
                             if (!el && action.name === "Done") {
                                 const altXpaths = [
                                     "//span[text()='Done']/ancestor::div[@role='button']",
-                                    "//span[contains(text(),'Done')]",
-                                    "//span[text()='Xong']/ancestor::div[@role='button']",
-                                    "//span[contains(text(),'Xong')]",
-                                    "//span[text()='Hoàn tất']/ancestor::div[@role='button']",
-                                    "//span[contains(text(),'Hoàn tất')]"
+                                    "//span[contains(text(),'Done')]"
                                 ];
                                 for (const alt of altXpaths) {
                                     el = await findElement(alt, 2000);
@@ -822,9 +787,7 @@
                             if (!el && action.name === "Submit") {
                                 const altXpaths = [
                                     "//span[text()='Submit']/ancestor::div[@role='button']",
-                                    "//span[contains(text(),'Submit')]",
-                                    "//span[text()='Gửi']/ancestor::div[@role='button']",
-                                    "//span[contains(text(),'Gửi')]"
+                                    "//span[contains(text(),'Submit')]"
                                 ];
                                 for (const alt of altXpaths) {
                                     el = await findElement(alt, 2000);
