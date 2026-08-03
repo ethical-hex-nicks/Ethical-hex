@@ -15,7 +15,7 @@
         { step: 2, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
         { step: 3, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
         { step: 4, name: "Fake profile", xpath: "//span[contains(text(),'Fake profile')]" },
-        { step: 5, name: "They're not a real person", xpath: "//span[text()='They're not a real person']" },
+        { step: 5, name: "Me", xpath: "//span[text()='Me']" },
         { step: 6, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
         { step: 7, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
         { step: 8, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" },
@@ -138,7 +138,7 @@
         { step: 111, name: "Menu (3 dots)", xpath: "//*[@aria-label='Profile settings see more options']" },
         { step: 112, name: "Report profile", xpath: "//span[contains(text(),'Report profile')]" },
         { step: 113, name: "Something about this profile", xpath: "//span[contains(text(),'Something about this profile')]" },
-        { step: 114, name: "Bullying or harassment", xpath: "//span[contains(text(),'Bullying or harassment')]" },
+        { step: 114, name: "Bullying or harassment or abuse", xpath: "//span[contains(text(),'Bullying or harassment or abuse')]" },
         { step: 115, name: "Submit", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Submit') or contains(text(),'Gửi')]" },
         { step: 116, name: "Next", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Next') or contains(text(),'Tiếp')]" },
         { step: 117, name: "Done", xpath: "//div[contains(@class,'xdj266r')]//span[contains(text(),'Done') or contains(text(),'Xong') or contains(text(),'Hoàn tất')]" }
